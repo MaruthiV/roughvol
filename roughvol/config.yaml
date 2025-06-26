@@ -1,0 +1,31 @@
+# Rough Volatility Model Configuration
+
+# Data settings
+ticker: "SPX"
+start_date: "2024-01-01"
+end_date: "2024-06-01"
+maturities: [30, 60, 90]  # days
+
+# Monte Carlo settings
+default_paths: 40000
+quick_paths: 5000  # for dry runs
+
+# Model parameters bounds
+parameter_bounds:
+  H: [0.05, 0.40]    # Hurst parameter (roughness)
+  eta: [0.5, 4.0]    # Volatility of volatility
+  rho: [-0.95, -0.1] # Correlation between spot and vol
+
+# Calibration settings
+differential_evolution:
+  maxiter: 100
+  popsize: 15
+  seed: 42
+
+# Caching settings
+cache_dir: "/tmp/roughvol_cache"
+cache_timeout: 86400  # 24 hours in seconds
+
+# Output settings
+default_output_dir: "./results"
+plot_dpi: 300 
